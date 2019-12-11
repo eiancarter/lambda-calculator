@@ -8,7 +8,8 @@
 }
 .display {
     margin-top: 25px;
-    height: 100px;
+    margin-left: 25px;
+    height: 75px;
     width: 450px;
     border-radius: 50px;
     color: white;
@@ -18,5 +19,15 @@
     justify-content: flex-end;
     align-items: flex-end;
     padding-right: 8%;
-    font-size: 5.0rem;
+    font-size: 4.0rem;
+  }
+
+  button {
+      display: block;
+      margin: auto;
+      background: navy;
+      color: white;
+      border-radius: 50%;
+      padding: 28px;
+    font-size: larger;
   }

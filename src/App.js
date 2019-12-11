@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
-import Display from ".components/DisplayComponents/Display";
-import NumberButton from ".components/NumberButtons/Numbers";
-import Numbers from ".components/NumberButtons/NumberButton";
-import Specials from ".components/SpecialButtons/SpecialButton";
-import Operators from ".components/OperatorButtons/Operators";
+import "./index.css";
+import Display from "./components/DisplayComponents/Display";
+import Numbers from "./components/ButtonComponents/NumberButtons/Numbers";
+import Specials from "./components/ButtonComponents/SpecialButtons/Specials";
+import Operators from "./components/ButtonComponents/OperatorButtons/Operators";
 
 // STEP 4 - import the button and display components
 // Don't forget to import any extra css/scss files you build into the correct component
@@ -18,16 +18,31 @@ function App() {
   // Your functions should accept a parameter of the the item data being displayed to the DOM (ie - should recieve 5 if the user clicks on
   // the "5" button, or the operator if they click one of those buttons) and then call your setter function to update state.
   // Don't forget to pass the functions (and any additional data needed) to the components as props
+  const [displayValue, setDisplayValue] = useState("");
+  const addNumber = (number) => {
+    setDisplayValue(displayValue => displayValue + number);
+  };
+  const addOperator = (operator) => {
+    if (operator === "=") {
+      setDisplayValue(displayValue => eval(displayValue));
+    } else {
+    setDisplayValue(displayValue => displayValue + " " + operator + " ");}
+  }
 
   return (
     <div className="container">
       <Logo />
       <div className="App">
-        <NumberButton/>
-        <Numbers/>
-        <Operators/>
-        <Specials/>
-        <Display/>
+        <Display number={displayValue}/>
+        <br></br>
+        <div className="special-numbers">
+          <Specials/>
+          <br></br>
+          <Numbers addNumber={addNumber}/>
+        </div>
+        <div className="operators-right">
+          <Operators addOperator={addOperator}/>
+        </div>
         {/* STEP 4 - Render your components here and be sure to properly import/export all files */}
       </div>
     </div>
